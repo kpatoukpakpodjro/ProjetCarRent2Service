@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Mes Locations</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-user-id="[[${currentUserId}]]">
+<h1>Mes Locations</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Voiture</th>
+    <th>Date de location</th>
+    <th>Retournée</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="rent : ${rents}">
+    <td th:text="${rent.getCar().getId()}"></td>
+    <td th:text="${rent.getBeginDate()}"></td>
+    <td th:text="${rent.getCar().isRented() ? 'Non' : 'Oui'}"></td>
+    <td>
+      <button th:if="${rent.getCar().isRented()}" th:onclick="'returnCar(' + ${rent.getCar().getId()} + ');'">Rendre</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<script src="/js/script.js"></script>
+</body>
+</html>

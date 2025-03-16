@@ -1,0 +1,1 @@
+[{"id":1,"car":{"id":20,"plateNumber":"WXY321","price":140,"rented":true},"user":{"id":2,"username":"admin","email":"admin@example.com","role":"ADMIN"},"beginDate":[2025,3,15],"endDate":[2025,3,15],"invoice":140.0}]

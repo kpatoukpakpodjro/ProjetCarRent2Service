@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Voitures Disponibles</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Voitures Disponibles</h1>
+<form method="get" action="/cars/available">
+    <label for="sort">Trier par prix :</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="">Sélectionner</option>
+        <option value="price">Prix croissant</option>
+    </select>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Immatriculation</th>
+        <th>Prix</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}"></td>
+        <td th:text="${car.plateNumber}"></td>
+        <td th:text="${car.price} + '€'"></td>
+        <td>
+            <form method="post" action="/rents/rent">
+                <input type="hidden" name="carId" th:value="${car.id}">
+                <button type="submit">Louer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/myrents(userId=${currentUserId})}">Voir mes locations</a>
+</body>
+</html>
